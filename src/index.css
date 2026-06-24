@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ *
+ * Theme tokens
+ * Colors are stored as space-separated RGB channels so Tailwind's
+ * `rgb(var(--token) / <alpha>)` can apply opacity. Flip `.dark` / `.light`
+ * on <html> to switch themes with zero React re-render cost.
+ * ------------------------------------------------------------------ */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Accent ramp — cool blue → violet (shared across themes) */
+  --accent: 91 140 255; /* #5b8cff */
+  --accent-soft: 124 160 255;
+  --accent-violet: 155 107 255; /* #9b6bff */
+}
+
+/* Dark (default) */
+.dark {
+  --canvas: 8 8 10; /* near-black charcoal */
+  --surface: 16 17 21;
+  --elevated: 24 25 31;
+  --line: 255 255 255; /* used at low alpha for hairlines */
+  --ink: 245 246 250;
+  --muted: 162 166 178;
+  --faint: 110 114 126;
+  color-scheme: dark;
+}
+
+/* Light */
+.light {
+  --canvas: 250 250 251;
+  --surface: 255 255 255;
+  --elevated: 255 255 255;
+  --line: 10 12 20;
+  --ink: 14 16 22;
+  --muted: 78 84 98;
+  --faint: 130 136 150;
+  color-scheme: light;
+}
+
+@layer base {
+  * {
+    border-color: rgb(var(--line) / 0.08);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Native smooth scroll + offset for the fixed navbar (no JS scroll lib). */
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    overflow-x: hidden;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: rgb(var(--accent) / 0.28);
+    color: rgb(var(--ink));
+  }
+
+  /* Custom scrollbar (desktop) */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--line) / 0.14);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--line) / 0.24);
+    background-clip: content-box;
+  }
+
+  /* Hide the OS cursor only when our custom cursor is active (pointer-fine) */
+  @media (hover: hover) and (pointer: fine) {
+    body[data-custom-cursor="true"],
+    body[data-custom-cursor="true"] * {
+      cursor: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Frosted-glass surface — used sparingly (nav, palette, key cards only).
+     Blur kept modest to limit backdrop-filter cost. */
+  .glass {
+    background: rgb(var(--surface) / 0.6);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    border: 1px solid rgb(var(--line) / 0.08);
+  }
+
+  .glass-strong {
+    background: rgb(var(--surface) / 0.8);
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    border: 1px solid rgb(var(--line) / 0.1);
+  }
+
+  /* Plain elevated card — no backdrop-filter, just a soft surface + border.
+     Preferred over glass for repeated/list cards. */
+  .card {
+    background: rgb(var(--surface) / 0.55);
+    border: 1px solid rgb(var(--line) / 0.08);
+  }
+
+  .text-gradient {
+    @apply bg-accent-gradient bg-clip-text text-transparent;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-line/10;
+  }
+}
+
+@layer utilities {
+  /* --------------------------------------------------------------- *
+   * CSS reveal system (driven by IntersectionObserver toggling
+   * `.is-visible`). Animates ONLY opacity + transform → GPU friendly.
+   * --------------------------------------------------------------- */
+  .anim {
+    opacity: 0;
+    transition:
+      opacity 0.7s var(--ease-out-expo),
+      transform 0.7s var(--ease-out-expo);
+    transition-delay: var(--anim-delay, 0s);
+  }
+  .anim[data-variant="up"] {
+    transform: translateY(24px);
+  }
+  .anim[data-variant="down"] {
+    transform: translateY(-24px);
+  }
+  .anim[data-variant="left"] {
+    transform: translateX(28px);
+  }
+  .anim[data-variant="right"] {
+    transform: translateX(-28px);
+  }
+  .anim[data-variant="scale"] {
+    transform: scale(0.94);
+  }
+  .anim.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Word-by-word text reveal (CSS only) */
+  .tr-word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+  .tr-inner {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 0.8s var(--ease-out-expo);
+  }
+  .tr.is-visible .tr-inner {
+    transform: translateY(0);
+  }
+
+  /* Loading screen */
+  .loader-bar {
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: load 0.65s var(--ease-out-expo) forwards;
+  }
+
+  @keyframes load {
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Subtle hero float (transform only, few elements) */
+  @keyframes floaty {
+    0%, 100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -16px, 0);
+    }
+  }
+  .floaty {
+    animation: floaty 9s ease-in-out infinite;
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .tr-inner {
+      transform: none !important;
+    }
+    .floaty {
+      animation: none !important;
+    }
+  }
+}
