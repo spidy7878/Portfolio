@@ -4,7 +4,6 @@ import { navItems, siteConfig } from "@/config/site";
 import { useScrollState } from "@/hooks/useScrollState";
 import { useSectionNav } from "@/hooks/useSectionNav";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { SocialLinks } from "@/components/ui/SocialLinks";
 import { ButtonLink } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
@@ -101,7 +100,7 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
               size="sm"
               className="hidden sm:inline-flex"
             >
-              <span>Book a call</span>
+              <span>Contact</span>
               <FiArrowUpRight />
             </ButtonLink>
             <button
@@ -115,44 +114,62 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
         </nav>
       </header>
 
-      {/* Mobile menu — CSS-only slide-in (solid bg, no backdrop-filter,
-          visibility-gated so it isn't painted while closed) */}
+      {/* Mobile menu — slides down from top */}
       <div
         id="mobile-menu"
         aria-hidden={!menuOpen}
         className={cn(
-          "fixed inset-0 z-[100] flex flex-col bg-canvas transition-[transform,visibility] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden",
-          menuOpen ? "visible translate-x-0" : "invisible translate-x-full",
+          "fixed inset-x-0 top-0 z-[100] flex flex-col rounded-b-[2rem] bg-canvas/90 backdrop-blur-2xl shadow-soft transition-[transform,visibility] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden",
+          menuOpen ? "visible translate-y-0" : "invisible -translate-y-full",
         )}
       >
-        <div className="flex items-center justify-between px-6 pt-6">
-          <span className="font-display text-lg text-ink">{siteConfig.name}</span>
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 pb-2 pt-5">
+          <button
+            onClick={() => { setMenuOpen(false); goTop(); }}
+            aria-label="Home"
+          >
+            <img
+              src="/logo.png"
+              alt={siteConfig.name}
+              className="h-10 w-10 object-contain dark:invert"
+            />
+          </button>
           <button
             onClick={() => setMenuOpen(false)}
             aria-label="Close menu"
-            className="grid h-11 w-11 place-items-center rounded-full text-ink"
+            className="grid h-10 w-10 place-items-center rounded-xl border border-line/20 bg-surface/50 text-ink transition-colors hover:border-accent/30"
           >
-            <FiX size={22} />
+            <FiX size={18} />
           </button>
         </div>
-        <ul className="flex flex-1 flex-col justify-center gap-2 px-6">
+
+        {/* Nav links */}
+        <ul className="flex flex-col px-6 py-4">
           {navItems.map((item) => (
-            <li key={item.href}>
+            <li key={item.href} className="border-b border-line/10 last:border-0">
               <button
                 onClick={() => goTo(item.href)}
                 tabIndex={menuOpen ? 0 : -1}
-                className="font-display text-4xl tracking-tight text-ink transition-colors hover:text-accent"
+                className="w-full py-4 text-left font-display text-2xl font-semibold text-ink/60 transition-colors duration-200 hover:text-ink"
               >
                 {item.label}
               </button>
             </li>
           ))}
         </ul>
-        <div className="flex items-center justify-between border-t border-line/10 px-6 py-6">
-          <SocialLinks />
-          <ButtonLink href="#contact" onClick={() => goTo("#contact")} size="sm">
-            Book a call
-          </ButtonLink>
+
+        {/* Book a Call */}
+        <div className="px-5 pb-8 pt-3">
+          <a
+            href={siteConfig.booking}
+            target="_blank"
+            rel="noopener noreferrer"
+            tabIndex={menuOpen ? 0 : -1}
+            className="flex w-full items-center justify-center rounded-2xl bg-accent-gradient py-4 font-display text-base font-semibold text-white transition-opacity hover:opacity-90"
+          >
+            Book a Call
+          </a>
         </div>
       </div>
     </>

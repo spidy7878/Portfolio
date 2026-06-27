@@ -90,11 +90,9 @@ export function Hero() {
           >
             <Magnetic>
               <ButtonLink
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToId("#contact");
-                }}
+                href={siteConfig.booking}
+                target="_blank"
+                rel="noopener noreferrer"
                 size="md"
                 className="h-12 px-7"
               >

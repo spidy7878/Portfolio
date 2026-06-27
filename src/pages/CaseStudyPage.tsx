@@ -7,7 +7,6 @@ import {
   FiCheck,
   FiExternalLink,
   FiGithub,
-  FiBookOpen,
 } from "react-icons/fi";
 import { getNextProject, getProject } from "@/config/projects";
 import { siteConfig } from "@/config/site";
@@ -16,11 +15,21 @@ import { TextReveal } from "@/components/anim/TextReveal";
 import { ButtonLink } from "@/components/ui/Button";
 import { ProjectMockup } from "@/components/sections/work/ProjectMockup";
 import { useSectionNav } from "@/hooks/useSectionNav";
+import { useSEO } from "@/hooks/useSEO";
 
 export function CaseStudyPage() {
   const { slug } = useParams<{ slug: string }>();
   const project = slug ? getProject(slug) : undefined;
   const { go } = useSectionNav();
+
+  useSEO({
+    title: project
+      ? `${project.title} — Case Study · Mohammed Anas`
+      : "Case Study · Mohammed Anas",
+    description: project
+      ? `${project.tagline} ${project.summary}`.slice(0, 160)
+      : "Explore a detailed case study by Mohammed Anas — Full-Stack Engineer & SaaS Architect.",
+  });
 
   // Always start a case study from the top.
   useEffect(() => {
@@ -100,17 +109,6 @@ export function CaseStudyPage() {
                 size="sm"
               >
                 <FiGithub /> Source
-              </ButtonLink>
-            )}
-            {isRealLink(links.docs) && (
-              <ButtonLink
-                href={links.docs}
-                target="_blank"
-                rel="noreferrer"
-                variant="secondary"
-                size="sm"
-              >
-                <FiBookOpen /> Docs
               </ButtonLink>
             )}
           </FadeUp>

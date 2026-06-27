@@ -16,13 +16,9 @@ const LINKEDIN_URL = "https://www.linkedin.com/in/mohammed-anas-039655229/";
 
 /** WhatsApp number — digits only, including country code, NO "+" or spaces. */
 const WHATSAPP_NUMBER = "918274055502";
-/** Prefilled message opened when someone taps "Message on WhatsApp". */
-const WHATSAPP_PREFILL = "Hi Anas, I'd like to discuss a project.";
 
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
-const WHATSAPP_BOOKING_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-  WHATSAPP_PREFILL,
-)}`;
+const CALENDLY_URL = "https://calendly.com/anasmd021";
 
 export const siteConfig = {
   name: NAME,
@@ -35,8 +31,8 @@ export const siteConfig = {
   email: EMAIL,
   location: "Available worldwide · Remote",
   availability: "Available for new projects",
-  /** Where "Book a call" actions point (set to WhatsApp). */
-  booking: WHATSAPP_BOOKING_LINK,
+  /** Where "Book a call" actions point. */
+  booking: CALENDLY_URL,
   whatsapp: WHATSAPP_LINK,
 } as const;
 
