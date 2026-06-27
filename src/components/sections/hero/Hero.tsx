@@ -1,5 +1,10 @@
 import { useRef } from "react";
-import { FiArrowDown, FiArrowUpRight, FiActivity, FiCheckCircle } from "react-icons/fi";
+import {
+  FiArrowDown,
+  FiArrowUpRight,
+  FiActivity,
+  FiCheckCircle,
+} from "react-icons/fi";
 import { siteConfig, heroStats } from "@/config/site";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { AvailabilityBadge } from "@/components/ui/AvailabilityBadge";
@@ -62,19 +67,27 @@ export function Hero() {
             <AvailabilityBadge label={siteConfig.availability} />
           </FadeUp>
 
-          <h1 className="mt-7 max-w-2xl text-display-md font-semibold leading-[1.02] text-ink lg:text-display-lg">
-            <TextReveal text="Enterprise software," delay={0.15} />
+          <h1 className="mt-7 max-w-2xl text-display-sm font-semibold leading-[1.02] text-ink lg:text-display-md">
+            <TextReveal text="Full Stack Developer -" delay={0.15} />
             <br className="hidden sm:block" />
-            <span className="text-gradient">
-              <TextReveal text="engineered end to end." delay={0.35} />
-            </span>
+            <TextReveal
+              text="From Idea to Production"
+              delay={0.35}
+              className="text-gradient text-[0.5em]"
+            />
           </h1>
 
-          <FadeUp delay={0.15} className="mt-7 max-w-xl text-lg leading-relaxed text-muted">
+          <FadeUp
+            delay={0.15}
+            className="mt-7 max-w-xl text-base leading-relaxed text-muted"
+          >
             I'm {siteConfig.name} — {siteConfig.description}
           </FadeUp>
 
-          <FadeUp delay={0.25} className="mt-10 flex flex-wrap items-center gap-3">
+          <FadeUp
+            delay={0.25}
+            className="mt-10 flex flex-wrap items-center gap-3"
+          >
             <Magnetic>
               <ButtonLink
                 href="#contact"
@@ -82,14 +95,20 @@ export function Hero() {
                   e.preventDefault();
                   scrollToId("#contact");
                 }}
-                size="lg"
+                size="md"
+                className="h-12 px-7"
               >
                 <span>Book a discovery call</span>
                 <FiArrowUpRight />
               </ButtonLink>
             </Magnetic>
             <Magnetic>
-              <Button variant="secondary" size="lg" onClick={() => scrollToId("#work")}>
+              <Button
+                variant="secondary"
+                size="md"
+                className="h-12 px-7"
+                onClick={() => scrollToId("#work")}
+              >
                 View selected work
               </Button>
             </Magnetic>
@@ -101,14 +120,16 @@ export function Hero() {
           <FadeUp
             delay={0.35}
             as="dl"
-            className="mt-16 grid max-w-2xl grid-cols-3 gap-6 border-t border-line/10 pt-8"
+            className="mt-16 grid max-w-2xl grid-cols-3 gap-3 border-t border-line/10 pt-8 sm:gap-6"
           >
             {heroStats.map((s) => (
               <div key={s.label}>
-                <dt className="font-display text-2xl font-semibold text-ink md:text-3xl">
+                <dt className="font-display text-lg font-semibold text-ink sm:text-2xl md:text-3xl">
                   {s.value}
                 </dt>
-                <dd className="mt-1 text-xs leading-snug text-faint md:text-sm">{s.label}</dd>
+                <dd className="mt-1 text-[10px] leading-snug text-faint sm:text-xs md:text-sm">
+                  {s.label}
+                </dd>
               </div>
             ))}
           </FadeUp>
@@ -156,13 +177,17 @@ export function Hero() {
               </span>
             </div>
             <div className="mt-4 space-y-2.5">
-              {["Build", "Tests · 482", "Type-check", "Deploy · prod"].map((row, i) => (
-                <div key={row} className="flex items-center gap-3">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                  <span className="flex-1 text-sm text-muted">{row}</span>
-                  <span className="font-mono text-[11px] text-faint">{(0.8 + i * 0.4).toFixed(1)}s</span>
-                </div>
-              ))}
+              {["Build", "Tests · 482", "Type-check", "Deploy · prod"].map(
+                (row, i) => (
+                  <div key={row} className="flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                    <span className="flex-1 text-sm text-muted">{row}</span>
+                    <span className="font-mono text-[11px] text-faint">
+                      {(0.8 + i * 0.4).toFixed(1)}s
+                    </span>
+                  </div>
+                )
+              )}
             </div>
             <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-line/10">
               <div className="h-full w-full bg-accent-gradient" />
@@ -182,7 +207,9 @@ export function Hero() {
               <FiActivity size={14} className="text-accent" />
               <span className="text-xs uppercase tracking-wide">Uptime</span>
             </div>
-            <div className="mt-2 font-display text-3xl font-semibold text-ink">99.9%</div>
+            <div className="mt-2 font-display text-3xl font-semibold text-ink">
+              99.9%
+            </div>
             <div className="mt-3 flex items-end gap-1">
               {[10, 16, 12, 20, 14, 22, 18].map((h, i) => (
                 <span

@@ -22,7 +22,19 @@ export function ProjectCard({ project }: ProjectCardProps) {
       {/* Visual */}
       <div className="relative overflow-hidden rounded-2xl">
         <div className="transition-transform duration-700 ease-out-expo group-hover:scale-[1.03]">
-          <ProjectMockup gradient={project.gradient} variant="card" />
+          {project.video ? (
+            <video
+              src={project.video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full rounded-xl object-cover"
+              style={{ aspectRatio: "16 / 10" }}
+            />
+          ) : (
+            <ProjectMockup gradient={project.gradient} variant="card" />
+          )}
         </div>
       </div>
 

@@ -11,11 +11,11 @@ const NAME = "Mohammed Anas";
 const EMAIL = "anasmd021@gmail.com";
 
 // ── Links (TODO: replace placeholders with real URLs) ─────────────────────────
-const GITHUB_URL = "https://github.com/"; // TODO: https://github.com/<you>
-const LINKEDIN_URL = "https://linkedin.com/in/"; // TODO: https://linkedin.com/in/<you>
+const GITHUB_URL = "https://github.com/spidy7878";
+const LINKEDIN_URL = "https://www.linkedin.com/in/mohammed-anas-039655229/";
 
 /** WhatsApp number — digits only, including country code, NO "+" or spaces. */
-const WHATSAPP_NUMBER = "0000000000"; // TODO: e.g. "447700900123"
+const WHATSAPP_NUMBER = "918274055502";
 /** Prefilled message opened when someone taps "Message on WhatsApp". */
 const WHATSAPP_PREFILL = "Hi Anas, I'd like to discuss a project.";
 
@@ -70,6 +70,6 @@ export const navItems: NavItem[] = [
 /** Headline stats surfaced in the hero / about strip. */
 export const heroStats: { value: string; label: string }[] = [
   { value: "8+", label: "Production platforms shipped" },
-  { value: "5★", label: "Average client rating" },
+  { value: "4.9★", label: "Average client rating" },
   { value: "99.9%", label: "Uptime across deployments" },
 ];

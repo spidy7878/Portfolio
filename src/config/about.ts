@@ -25,9 +25,9 @@ export const aboutIntro =
 
 export const aboutStats: AboutStat[] = [
   { to: 8, suffix: "+", label: "Production platforms shipped" },
-  { to: 6, suffix: "+", label: "Years building software" },
+  { to: 4, suffix: "+", label: "Years building software" },
   { to: 20, suffix: "+", label: "Clients & collaborators" },
-  { to: 99.9, decimals: 1, suffix: "%", label: "Uptime across deployments" },
+  { to: 4.9, decimals: 1, label: "Average client rating" },
 ];
 
 export const principles: Principle[] = [
@@ -55,33 +55,28 @@ export const principles: Principle[] = [
 
 export const journey: Milestone[] = [
   {
-    period: "The start",
-    title: "First production code",
-    body: "Began building real applications for real users — and got hooked on shipping things people depend on.",
+    period: "B.Tech years",
+    title: "Code before class",
+    body: "While studying engineering, I taught myself to build real software — not just coursework, but production apps with actual users. The degree gave me fundamentals; freelancing gave me the rest.",
   },
   {
-    period: "Going full-stack",
-    title: "End-to-end engineering",
-    body: "Grew from frontend into databases, APIs and infrastructure — owning features from UI to deployment.",
+    period: "First clients",
+    title: "Freelancing from university",
+    body: "Still in my final years of B.Tech, I started taking on paid client work — turning briefs into shipped products. That early pressure to deliver for real people shaped everything about how I work.",
   },
   {
-    period: "Freelancing",
-    title: "Partnering with clients",
-    body: "Started working directly with founders and businesses, translating goals into shipped software.",
+    period: "Founder partnerships",
+    title: "Building with founders",
+    body: "Started collaborating directly with startup founders — joining early, shaping the architecture, and owning delivery end to end. Learned to think in products and outcomes, not just tasks.",
   },
   {
-    period: "Enterprise & ERP",
-    title: "Complex business systems",
-    body: "Took on compliance platforms, ERPs and inspection systems — high-stakes domains demanding rigour.",
-  },
-  {
-    period: "SaaS & automation",
-    title: "Scaling products",
-    body: "Built multi-tenant SaaS, realtime systems and automation engines designed to scale and stay reliable.",
+    period: "SaaS & enterprise",
+    title: "Complex systems at scale",
+    body: "Went deep on multi-tenant SaaS, compliance platforms and enterprise business systems — domains where reliability and correctness aren't optional. Every decision has real consequences.",
   },
   {
     period: "Today",
-    title: "Your technical partner",
-    body: "Available to architect and build enterprise-grade software for teams who want it done properly.",
+    title: "Independent, worldwide",
+    body: "Now working independently with agencies and clients across the world — solving hard enterprise problems, from architecture through to deployment, entirely on my own.",
   },
 ];

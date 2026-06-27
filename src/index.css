@@ -51,7 +51,7 @@
     text-rendering: optimizeLegibility;
     /* Native smooth scroll + offset for the fixed navbar (no JS scroll lib). */
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 4.5rem;
   }
 
   body {

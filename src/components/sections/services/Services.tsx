@@ -26,7 +26,11 @@ export function Services() {
         {services.map((service, i) => {
           const Icon = serviceIcons[service.icon];
           return (
-            <FadeUp key={service.title} delay={(i % 3) * 0.07}>
+            <FadeUp
+              key={service.title}
+              delay={(i % 3) * 0.07}
+              className={service.wide ? "md:col-span-2 lg:col-span-2" : ""}
+            >
               <div className="card group relative flex h-full flex-col overflow-hidden rounded-2xl p-6 transition-transform duration-500 ease-out-expo hover:-translate-y-1.5">
                 {/* Top accent line — grows on hover */}
                 <span

@@ -6,7 +6,7 @@ import { About } from "@/components/sections/about/About";
 import { Skills } from "@/components/sections/skills/Skills";
 import { Services } from "@/components/sections/services/Services";
 import { Process } from "@/components/sections/process/Process";
-import { Testimonials } from "@/components/sections/testimonials/Testimonials";
+// import { Testimonials } from "@/components/sections/testimonials/Testimonials";
 import { Clients } from "@/components/sections/clients/Clients";
 import { Contact } from "@/components/sections/contact/Contact";
 import { scrollToId } from "@/lib/scroll";
@@ -38,7 +38,7 @@ export function HomePage() {
 
       <Process />
 
-      <Testimonials />
+      {/* <Testimonials /> */}
 
       <Clients />
 

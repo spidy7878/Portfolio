@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
+import { FiMenu, FiX, FiArrowUpRight, FiDownload } from "react-icons/fi";
 import { navItems, siteConfig } from "@/config/site";
 import { useScrollState } from "@/hooks/useScrollState";
 import { useSectionNav } from "@/hooks/useSectionNav";
@@ -44,9 +44,11 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
             className="flex items-center gap-2.5 pl-1"
             aria-label="Back to top"
           >
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-accent-gradient font-display text-sm font-semibold text-white">
-              {siteConfig.initials}
-            </span>
+            <img
+              src="/logo.png"
+              alt={siteConfig.name}
+              className="h-12 w-12 object-contain dark:invert"
+            />
             <span className="hidden font-display text-sm font-medium tracking-tight text-ink sm:block">
               {siteConfig.name}
             </span>
@@ -81,6 +83,15 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
               </kbd>
             </button>
             <ThemeToggle />
+            <a
+              href="/resume.pdf"
+              download
+              data-cursor="hover"
+              className="hidden items-center gap-1.5 rounded-full border border-line/10 px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-accent/40 hover:text-ink sm:inline-flex"
+            >
+              <FiDownload size={14} />
+              Resume
+            </a>
             <ButtonLink
               href="#contact"
               onClick={(e) => {

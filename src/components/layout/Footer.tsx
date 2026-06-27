@@ -14,9 +14,11 @@ export function Footer() {
           {/* Brand + CTA */}
           <div className="max-w-sm">
             <div className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-lg bg-accent-gradient font-display text-sm font-semibold text-white">
-                {siteConfig.initials}
-              </span>
+              <img
+                src="/logo.png"
+                alt={siteConfig.name}
+                className="h-24 w-24 object-contain dark:invert"
+              />
               <span className="font-display text-lg tracking-tight text-ink">
                 {siteConfig.name}
               </span>

@@ -28,12 +28,15 @@ export function TextReveal({
   return (
     <span
       ref={ref}
-      className={cn("tr inline", inView && "is-visible", className)}
+      className={cn("tr inline", inView && "is-visible")}
       aria-label={text}
     >
       {words.map((word, i) => (
         <span key={i} className="tr-word" aria-hidden>
-          <span className="tr-inner" style={{ transitionDelay: `${delay + i * stagger}s` }}>
+          <span
+            className={cn("tr-inner", className)}
+            style={{ transitionDelay: `${delay + i * stagger}s` }}
+          >
             {word}
             {i < words.length - 1 ? " " : ""}
           </span>

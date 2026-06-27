@@ -4,14 +4,9 @@
  * them.
  */
 export const clients: string[] = [
-  "Northwind Health",
-  "Saffron POS",
-  "AeroCheck",
-  "Atelier&Co",
-  "FlowOps",
-  "VaultPay",
-  "Lumen ERP",
-  "Stitchline",
-  "Cortex AI",
-  "Harbor Logistics",
+  "Silver Storey",
+  "Complied NYC",
+  "Vodazok",
+  "Macron Technology",
+  "Plaiss",
 ];

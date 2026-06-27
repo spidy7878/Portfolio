@@ -119,7 +119,20 @@ export function CaseStudyPage() {
 
       {/* Hero visual */}
       <FadeUp className="mx-auto mt-12 w-full max-w-5xl px-6">
-        <ProjectMockup gradient={project.gradient} variant="hero" className="shadow-soft" />
+        {project.video ? (
+          <video
+            src={project.video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            controls
+            className="w-full rounded-2xl object-cover shadow-soft"
+            style={{ aspectRatio: "16 / 9" }}
+          />
+        ) : (
+          <ProjectMockup gradient={project.gradient} variant="hero" className="shadow-soft" />
+        )}
       </FadeUp>
 
       {/* ---- Meta strip ---- */}

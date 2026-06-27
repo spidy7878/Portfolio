@@ -17,7 +17,7 @@ export function Section({ id, className, children, flush }: SectionProps) {
       id={id}
       className={cn(
         "relative mx-auto w-full max-w-6xl px-6",
-        !flush && "py-24 md:py-32 lg:py-40",
+        !flush && "py-10 md:py-14 lg:py-20",
         className,
       )}
     >

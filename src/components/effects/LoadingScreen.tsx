@@ -43,9 +43,11 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
       )}
     >
       <div className="flex items-center gap-3 animate-fade-in">
-        <span className="grid h-12 w-12 place-items-center rounded-xl bg-accent-gradient font-display text-lg font-semibold text-white">
-          {siteConfig.initials}
-        </span>
+        <img
+          src="/logo.png"
+          alt={siteConfig.name}
+          className="h-20 w-20 object-contain dark:invert"
+        />
         <span className="font-display text-2xl tracking-tight text-ink">{siteConfig.name}</span>
       </div>
       <div className="mt-10 h-px w-56 overflow-hidden bg-line/10">
